@@ -2,8 +2,8 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/templates">Templates</router-link> |
     <router-link to="/exercises">Exercises</router-link> |
+    <router-link to="/templates">Templates</router-link> |
     <router-link to="/workout">Workout</router-link>
   </div>
   <router-view/>
