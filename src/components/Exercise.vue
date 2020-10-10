@@ -7,12 +7,19 @@
       <p >{{ exercise.name }}</p>
       <!-- <p>{{ exercise.description }}</p> -->
     </div>
+
   </div>
 </template>
 
 <script>
 export default {
-  props: ['exercise']
+  props: ['exercise'],
+  data () {
+    return {
+      isExpanded: false,
+      isEditable: false
+    }
+  }
 }
 </script>
 

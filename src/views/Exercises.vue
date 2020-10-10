@@ -11,26 +11,24 @@
 
 <script>
 import Exercise from '../components/Exercise.vue'
+import { getExercises } from '../api'
 export default {
   components: {
     Exercise
   },
   data () {
     return {
-      exercises: [
-        {
-          name: 'Deadlift',
-          description: 'Good for the back. Composite exercise.'
-        },
-        {
-          name: 'Bench Press (Incline)',
-          description: 'Good for the triceps and the chest.'
-        },
-        {
-          name: 'Bench Press',
-          description: 'Good for the triceps and the chest.'
-        }
-      ]
+      exercises: []
+    }
+  },
+  created () {
+    this.fetch()
+  },
+  methods: {
+    async fetch () {
+      const data = await getExercises()
+      console.log(data)
+      this.exercises = data
     }
   }
 }
