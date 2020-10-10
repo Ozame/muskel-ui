@@ -10,21 +10,41 @@
 </template>
 
 <style>
+
+:root {
+  --bg-color: #34374c;
+  --fg-color: #2c2e3e;
+  --accent-color: #ee2b47;
+  --vue-green: #42b983;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 #app {
+  height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  background-color: var(--bg-color);
+  color: var(--accent-color);
 }
 
 #nav {
-  padding: 30px;
+  padding: 20px;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #73abe4;
 }
 
 #nav a.router-link-exact-active {
