@@ -5,12 +5,12 @@
     </div>
     <div class="ex-desc">
       <h4 v-if="!isExpanded">{{ ex.name }}</h4>
-      <input v-else type="text" :disabled="!isEditable" v-model="ex.name" />
+      <input v-else type="text" :disabled="!isEditable" v-model.trim="ex.name" />
       <div v-if="isExpanded" class="expanded-info">
         <!-- <p class="ex-type" :title="ex.type">{{ ex.type[0] }}</p> -->
         <textarea
           :disabled="!isEditable"
-          v-model="ex.description"
+          v-model.trim="ex.description"
           class="ex-desc-text"
         ></textarea>
         <div class="buttons">
