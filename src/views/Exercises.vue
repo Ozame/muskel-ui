@@ -1,18 +1,24 @@
 <template>
+  <div>
   <div class="exercises">
     <Exercise
       v-for="exercise in exercises"
       :exercise="exercise"
       :key="exercise.name"
       v-on:update-exercise="updateExercise"
+      v-on:delete-exercise="deleteExercise"
     >
     </Exercise>
   </div>
+  <div id="exercise-add">
+      <span>+</span>
+    </div></div>
+
 </template>
 
 <script>
 import Exercise from '../components/Exercise.vue'
-import { getExercises, putExercise } from '../api'
+import { getExercises, putExercise, deleteExercise } from '../api'
 export default {
   components: {
     Exercise
@@ -38,6 +44,14 @@ export default {
           this.exercises.splice(index, 1, saved)
         }
       }
+    },
+    async deleteExercise (ex) {
+      await deleteExercise(ex.uuid)
+      for (const [index, el] of this.exercises.entries()) {
+        if (el.uuid === ex.uuid) {
+          this.exercises.splice(index, 1)
+        }
+      }
     }
   }
 }
@@ -49,6 +63,16 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: flex-start;
-  height: 80vh;
+  /* height: 80vh; */
 }
+
+#exercise-add {
+  margin: 8px 5px;
+  font-size: 2em;
+  text-align: center;
+  background-color: var(--accent-color);
+  color: whitesmoke;
+  border-radius: 8px;
+}
+
 </style>

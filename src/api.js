@@ -57,6 +57,22 @@ export const putExercise = async updated => {
   }
 }
 
+export const deleteExercise = async id => {
+  const url = `${SERVER_URL}/exercises/${id}`
+  try {
+    const resp = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const exercise = await resp.json()
+    return exercise
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export const getTemplates = async () => {
   const url = `${SERVER_URL}/templates`
   try {

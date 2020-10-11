@@ -23,6 +23,11 @@
   padding: 0;
 }
 
+/* This makes size include padding */
+/* *, *:before, *:after {
+  box-sizing: border-box;
+} */
+
 html, body {
   height: 100%;
   width: 100%;
