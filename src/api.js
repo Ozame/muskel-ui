@@ -40,6 +40,23 @@ export const postExercise = async newExercise => {
   }
 }
 
+export const putExercise = async updated => {
+  const url = `${SERVER_URL}/exercises/${updated.uuid}`
+  try {
+    const resp = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updated)
+    })
+    const exercise = await resp.json()
+    return exercise
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export const getTemplates = async () => {
   const url = `${SERVER_URL}/templates`
   try {

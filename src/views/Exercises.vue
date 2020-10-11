@@ -4,6 +4,7 @@
       v-for="exercise in exercises"
       :exercise="exercise"
       :key="exercise.name"
+      v-on:update-exercise="updateExercise"
     >
     </Exercise>
   </div>
@@ -11,7 +12,7 @@
 
 <script>
 import Exercise from '../components/Exercise.vue'
-import { getExercises } from '../api'
+import { getExercises, putExercise } from '../api'
 export default {
   components: {
     Exercise
@@ -27,8 +28,16 @@ export default {
   methods: {
     async fetch () {
       const data = await getExercises()
-      console.log(data)
       this.exercises = data
+    },
+    async updateExercise (updated) {
+      const saved = await putExercise(updated)
+      // Here the current exercise list is updated
+      for (const [index, el] of this.exercises.entries()) {
+        if (el.uuid === saved.uuid) {
+          this.exercises.splice(index, 1, saved)
+        }
+      }
     }
   }
 }

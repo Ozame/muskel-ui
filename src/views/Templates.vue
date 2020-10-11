@@ -26,7 +26,6 @@ export default {
   methods: {
     async fetch () {
       const data = await getTemplates()
-      console.log(data)
       this.templates = data
     }
   }
