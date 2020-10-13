@@ -10,7 +10,7 @@
       >
         <p>💪</p>
         <p>{{ ex.name }}</p>
-        <p><strong>X</strong></p>
+        <p @click="deleteExercise(ex)" ><strong>X</strong></p>
       </div>
     </div>
   </div>
@@ -18,7 +18,15 @@
 
 <script>
 export default {
-  props: ['template']
+  props: ['template'],
+  methods: {
+    deleteExercise (ex) {
+      if (confirm(`Are you sure you want to delete ${ex.name}`)) {
+        this.$emit('delete-exercise', this.template.uuid, ex.uuid)
+      }
+    }
+  }
+
 }
 </script>
 
@@ -49,6 +57,4 @@ export default {
   grid-template-columns: 1.2em 1fr 1em;
 }
 
-.exercises p:last-child {
-}
 </style>

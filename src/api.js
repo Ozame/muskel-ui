@@ -81,3 +81,59 @@ export const getTemplates = async () => {
     console.log(err)
   }
 }
+
+export const postTemplate = async newTemplate => {
+  const url = `${SERVER_URL}/templates`
+  try {
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newTemplate)
+    })
+    const template = await resp.json()
+    return template
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const deleteTemplate = async tempId => {
+  const url = `${SERVER_URL}/templates/${tempId}`
+  try {
+    await fetch(url, {
+      method: 'DELETE'
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const PostExerciseToTemplate = async (tempId, ex) => {
+  const url = `${SERVER_URL}/templates/${tempId}/exercises`
+  try {
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(ex)
+    })
+    const saved = resp.json()
+    return saved
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const deleteExerciseFromTemplate = async (tempId, exId) => {
+  const url = `${SERVER_URL}/templates/${tempId}/exercises/${exId}`
+  try {
+    await fetch(url, {
+      method: 'DELETE'
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
