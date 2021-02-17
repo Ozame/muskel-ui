@@ -1,6 +1,36 @@
 // Contacting api is handled here
 var SERVER_URL = 'http://localhost:8000'
 
+// eslint-disable-next-line
+let inMemoryToken
+
+function login ({ jwtToken, jwtTokenExpiry }, noRedirect) {
+  inMemoryToken = {
+    token: jwtToken,
+    expiry: jwtTokenExpiry
+  }
+  if (!noRedirect) {
+    console.log('No redirect if')
+  }
+}
+
+export const postLogin = async (username, password) => {
+  const url = `${SERVER_URL}/token`
+  try {
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    })
+    const { token } = await resp.json()
+    login(token)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export const getExercises = async () => {
   const url = `${SERVER_URL}/exercises`
   try {
